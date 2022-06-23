@@ -1,7 +1,9 @@
 package com.mf.algorithm;
 
+
 public class SwapPairs24 {
     public static void main(String[] args) {
+
 
     }
 
