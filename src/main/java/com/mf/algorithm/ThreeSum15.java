@@ -18,12 +18,14 @@ public class ThreeSum15 {
         for (int i = 0; i < nums.length - 2; i++) {
             int left = i + 1;
             int right = nums.length - 1;
+            //对i 去重
             if (i ==0 || nums[i] != nums[i-1]) {
                 while (left < right) {
                     int sum = nums[i] + nums[left] + nums[right];
                     if (sum == 0) {
                         List<Integer> rs = Arrays.asList(nums[i], nums[left], nums[right]);
                         result.add(rs);
+                        //去重
                         while ( left < right && nums[left] == nums[++left]){}
                         while (left< right && nums[right] == nums[--right]){}
                     }
