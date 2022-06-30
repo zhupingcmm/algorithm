@@ -13,28 +13,30 @@ public class IsValid20 {
 
     public boolean isValid(String s) {
         String [] data = s.split("");
-        if (data.length <=1) return false;
-        Stack<String> stack = new Stack<>();
-        Map<String, String> map = new HashMap<>();
-        map.put("]", "[");
+        Map <String, String> map = new HashMap<>();
         map.put(")", "(");
         map.put("}", "{");
+        map.put("]", "[");
+        Stack<String> stack = new Stack<>();
         for (int i = 0; i < data.length; i++) {
             String item = data[i];
             if (!map.keySet().contains(item)) {
+                // 左括号， 直接入栈
                 stack.push(item);
             } else {
-                if (!stack.isEmpty()) {
-                    if (!map.get(item).equals(stack.pop())) {
+                // 右括号，
+                if(!stack.isEmpty()){
+                    if(!map.get(item).equals(stack.pop())) {
                         return false;
                     }
                 } else {
+                    //栈里无元素，表明无效
                     return false;
                 }
+
             }
         }
 
         return stack.isEmpty();
-
     }
 }

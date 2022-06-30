@@ -10,6 +10,7 @@ public class Merge88 {
         for (int i = 0; i < n; i++) {
             num1[m + i] = num2[i];
         }
+
         Arrays.sort(num1);
     }
 }
