@@ -9,24 +9,26 @@ public class levelOrder102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null) return result;
-
         LinkedList<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
+        queue.offer(root);
+        while (!queue.isEmpty()){
             List<Integer> res = new ArrayList<>();
-            int currentLevelSize = queue.size();
-            for (int i =0; i< currentLevelSize; i++) {
-                TreeNode curTreeNode = queue.poll();
-                res.add(curTreeNode.val);
-                if (curTreeNode.left != null) {
-                    queue.offer(curTreeNode.left);
+            int currentSize = queue.size();
+
+            for (int i = 0; i < currentSize; i++) {
+                TreeNode currentNode = queue.poll();
+                res.add(currentNode.val);
+                if (null != currentNode.left) {
+                    queue.offer(currentNode.left);
                 }
-                if (curTreeNode.right != null) {
-                    queue.offer(curTreeNode.right);
+                if (null != currentNode.right) {
+                    queue.offer(currentNode.right);
                 }
             }
+
             result.add(res);
         }
+
         return result;
     }
 }

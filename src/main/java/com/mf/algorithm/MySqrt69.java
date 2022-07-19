@@ -8,20 +8,19 @@ public class MySqrt69 {
     }
 
     public int mySqrt(int x) {
-
-        if (x < 2) return x;
+        if(x < 2) return x;
         long left = 0;
         long right = x;
         long mid = 0;
         while (left <= right) {
-            mid = (left + right) /2;
-            long result = mid * mid;
-            if (result == x) {
+            mid = (left + right) / 2;
+            long target = mid * mid;
+            if (target == x) {
                 return (int) mid;
-            } else if  (result < x) {
+            } else if (target < x) {
                 left = mid + 1;
             } else {
-                right = mid -1;
+                right = mid - 1;
             }
         }
         return (int) right;

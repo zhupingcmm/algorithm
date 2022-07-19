@@ -1,22 +1,24 @@
 package com.mf.algorithm;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
-public class LargestValues515 {
-    public List<Integer> largestValues(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        if (root == null) return result;
+public class InvertTree226 {
+    public static void main(String[] args) {
+        InvertTree226 invertTree226 = new InvertTree226();
+//        invertTree226.invertTree()
+    }
+
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) return root;
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            int max = Integer.MIN_VALUE;
             int currentSize = queue.size();
-            for (int i = 0; i < currentSize; i++) {
-
+            for (int i = 0; i < currentSize ; i++) {
                 TreeNode treeNode = queue.poll();
-                max = Math.max(max, treeNode.val);
+                TreeNode temp = treeNode.left;
+                treeNode.left = treeNode.right;
+                treeNode.right = temp;
                 if (treeNode.left != null) {
                     queue.offer(treeNode.left);
                 }
@@ -25,8 +27,7 @@ public class LargestValues515 {
                 }
 
             }
-            result.add(max);
         }
-        return result;
+        return root;
     }
 }
