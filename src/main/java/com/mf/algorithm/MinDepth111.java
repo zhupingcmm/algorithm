@@ -2,9 +2,9 @@ package com.mf.algorithm;
 
 public class MinDepth111 {
     private int min = 0;
-    public int minDepth(TreeNode root) {
-
-    }
+//    public int minDepth(TreeNode root) {
+//
+//    }
 
     private void dfs (TreeNode root, int curLevel) {
         if (root == null) {
