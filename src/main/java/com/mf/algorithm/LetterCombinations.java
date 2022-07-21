@@ -1,6 +1,5 @@
 package com.mf.algorithm;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,10 +32,9 @@ public class LetterCombinations {
             result.add(s);
             return;
         }
-        Character character =  digits.charAt(level);
-        String letters = map.get(Integer.parseInt(String.valueOf(character)));
+        String letters =map.get(Integer.parseInt(String.valueOf(digits.charAt(level))));
         for (int i = 0; i < letters.length(); i++) {
-            dfs(digits, level + 1, map, s + letters.charAt(i));
+            dfs(digits, level+1, map, s + letters.charAt(i));
         }
     }
 }

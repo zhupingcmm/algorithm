@@ -3,29 +3,32 @@ package com.mf.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Subsets {
+public class Subsets78 {
     public static void main(String[] args) {
         int [] nums = new int[]{1,2,3};
-        Subsets subsets = new Subsets();
+        Subsets78 subsets = new Subsets78();
         subsets.subsets(nums);
     }
 
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        dfs(0,nums, new ArrayList<>(), result);
+
+
         return result;
     }
 
-    private void dfs(int currentLevel,int [] nums, List<Integer> list,List<List<Integer>> result) {
-        if (currentLevel == nums.length) {
+    public void dfs(int level, int[]nums,  List<List<Integer>> result, List<Integer> list) {
+        if (level == nums.length) {
             result.add(new ArrayList<>(list));
             return;
         }
 
-        dfs(currentLevel + 1, nums, list, result);
-        list.add(nums[currentLevel]);
-        dfs(currentLevel + 1, nums, list, result);
-
+        //不选
+        dfs(level + 1, nums, result, list);
+        //选
+        list.add(nums[level]);
+        dfs(level + 1, nums, result, list);
+        //reverse
         list.remove(list.size() -1);
     }
 }
