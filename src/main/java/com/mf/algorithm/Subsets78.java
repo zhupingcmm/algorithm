@@ -12,7 +12,7 @@ public class Subsets78 {
 
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-
+        dfs(0, nums, result, new ArrayList<>());
 
         return result;
     }
