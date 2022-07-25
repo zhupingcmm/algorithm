@@ -14,6 +14,7 @@ public class Subsets78 {
         List<List<Integer>> result = new ArrayList<>();
         dfs(0, nums, result, new ArrayList<>());
 
+        System.out.println(result);
         return result;
     }
 
