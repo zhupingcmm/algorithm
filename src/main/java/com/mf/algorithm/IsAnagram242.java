@@ -6,33 +6,26 @@ public class IsAnagram242 {
 
     public static void main(String[] args) {
         IsAnagram242 isAnagram242 = new IsAnagram242();
-        boolean result = isAnagram242.isAnagram("ba", "ab");
+        boolean result = isAnagram242.isAnagram("ab", "a");
         System.out.println(result);
     }
     public boolean isAnagram(String s, String t) {
-        String [] sData = s.split("");
-        String [] tData = t.split("");
+
         HashMap<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < sData.length; i++) {
-            String item = sData[i];
-            if (!map.containsKey(item)) {
-                map.put(item, 1);
+
+        for (int i = 0; i < s.length(); i++) {
+            String tmp = String.valueOf(s.charAt(i));
+            if (map.containsKey(tmp)) {
+                map.put(tmp, map.get(tmp) + 1);
             } else {
-                int val = map.get(item) + 1;
-                map.put(item,val);
+                map.put(tmp,1);
             }
         }
-        for (int i = 0; i < tData.length; i++) {
-            String item = tData[i];
-            if (map.containsKey(item)) {
-                int value = map.get(item);
-                if (value <= 0) {
-                    return false;
-                }
-                value -= 1;
-                map.put(item, value);
-            } else {
-                return false;            }
+
+        for (int i = 0; i < t.length(); i++) {
+            String temp = String.valueOf(t.charAt(i));
+            if (map.get(temp) == null || map.get(temp) <=0) return false;
+            map.put(temp, map.get(temp) - 1);
         }
 
         for (String key: map.keySet()) {
@@ -41,6 +34,8 @@ public class IsAnagram242 {
                 return false;
             }
         }
+
+
         return true;
     }
 }

@@ -8,13 +8,16 @@ public class InorderTraversal94 {
 
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-//        helper(root, result);
+        quick(root, result);
 
-        Stack<TreeNode> stack = new Stack<>();
-        useStack(root, stack, result);
+//        Stack<TreeNode> stack = new Stack<>();
+        useStack(root, result);
         return result;
     }
-    private void useStack (TreeNode root, Stack<TreeNode> stack, List<Integer> result) {
+
+    private void useStack (TreeNode root, List<Integer> result) {
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
         while (!stack.isEmpty()) {
             while (root != null) {
                 stack.push(root);
@@ -26,16 +29,16 @@ public class InorderTraversal94 {
         }
     }
 
-
-    private void helper(TreeNode root, List<Integer> result) {
+    private void quick(TreeNode root, List<Integer> result) {
         if (root == null) return;
         if (root.left != null) {
-           helper(root.left, result);
-        }
-        result.add(root.val);
-        if (root.right != null) {
-            helper(root.right, result);
+            quick(root.left, result);
         }
 
+        result.add(root.val);
+
+        if (root.right != null) {
+            quick(root.right, result);
+        }
     }
 }

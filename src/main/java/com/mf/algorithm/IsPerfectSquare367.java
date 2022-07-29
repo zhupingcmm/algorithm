@@ -9,20 +9,22 @@ public class IsPerfectSquare367 {
     }
 
     public boolean isPerfectSquare(int num) {
-        long left = 0;
-        long right = num;
-        long mid = 0;
+        int left = 0;
+        int right = num;
+        int mid = 0;
+
         while (left <= right) {
-            mid = (left + right) /2;
-            long result = mid * mid;
-            if (result == num) {
+            mid = (left + right) / 2;
+            int target = mid * mid;
+            if (target == num) {
                 return true;
-            } else if (result < num) {
+            } else if (target < num) {
                 left = mid + 1;
             } else {
                 right = mid -1;
             }
         }
+
         return false;
     }
 }

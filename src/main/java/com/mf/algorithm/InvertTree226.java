@@ -11,14 +11,17 @@ public class InvertTree226 {
     public TreeNode invertTree(TreeNode root) {
         if (root == null) return root;
         LinkedList<TreeNode> queue = new LinkedList<>();
+
         queue.offer(root);
+
         while (!queue.isEmpty()) {
-            int currentSize = queue.size();
-            for (int i = 0; i < currentSize ; i++) {
+
+            int size = queue.size();
+            for (int i = 0; i < size ; i++) {
                 TreeNode treeNode = queue.poll();
-                TreeNode temp = treeNode.left;
-                treeNode.left = treeNode.right;
-                treeNode.right = temp;
+                TreeNode temNode = treeNode.left;
+                treeNode.left = temNode.right;
+                treeNode.right = temNode;
                 if (treeNode.left != null) {
                     queue.offer(treeNode.left);
                 }

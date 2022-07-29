@@ -4,12 +4,14 @@ public class ClimbStairs70 {
 
     public static void main(String[] args) {
         ClimbStairs70 climbStairs70 = new ClimbStairs70();
-        climbStairs70.climbStairs(3);
+        int result = climbStairs70.climbStairs(10);
+        System.out.println(result);
 
     }
 
     public int climbStairs(int n) {
-        if (n < 2) return n;
+        if (n <= 2) return 2;
+
         int [] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
