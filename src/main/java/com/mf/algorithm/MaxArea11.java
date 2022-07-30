@@ -24,14 +24,13 @@ public class MaxArea11 {
 //    }
     // o(n)
     public int maxArea(int[] height) {
-       int left = 0;
-       int right = height.length -1;
-       int max = 0;
-       while (left < right) {
-           int minHeight = height[left] < height[right] ? height[left++] : height[right--];
-           max = Math.max((right - left + 1) * minHeight, max);
-       }
-
-       return max;
+        int left = 0;
+        int right = height.length -1;
+        int max = Integer.MIN_VALUE;
+        while (left < right) {
+            int minHeight = height[left] < height[right] ? height[left++] : height[right--];
+            max = Math.max(max, (right - left + 1) * minHeight);
+        }
+        return max;
     }
 }
