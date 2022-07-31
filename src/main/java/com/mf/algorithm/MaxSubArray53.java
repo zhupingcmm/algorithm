@@ -9,33 +9,14 @@ public class MaxSubArray53 {
         maxSubArray53.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
     }
     public int maxSubArray(int[] nums) {
-
-        int[] dp = new int[nums.length];
+        int [] dp = new int[nums.length + 1];
         dp[0] = nums[0];
         int result = dp[0];
-        for (int i = 1; i < nums.length ; i++) {
-            dp[i] = Math.max(dp[i -1] + nums[i], nums[i]);
-            result = Math.max(dp[i], result);
+        for (int i = 1; i <nums.length ; i++) {
+            dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
+            result = Math.max(result, dp[i]);
         }
-        System.out.println(result);
         return result;
-
-
-//        List<List<Integer>> result = new ArrayList<>();
-//        helper(0, nums, new ArrayList<>(), result);
-//
-//        System.out.println(result.size());
-//        int max = Integer.MIN_VALUE;
-//        for (List<Integer> list: result) {
-//            int temp = 0;
-//            for(int num : list) {
-//                temp += num;
-//            }
-//            max = Math.max(max, temp);
-//        }
-//
-//        System.out.println(max);
-//        return 0;
     }
 
     private void helper(int level, int[] nums, List<Integer> list, List<List<Integer>> result) {
