@@ -9,6 +9,7 @@ public class MyPow50 {
     }
 
     private double quick(double x, int n) {
+
      if (n == 0) return 1.0;
      double target = quick(x, n/2);
      return n % 2 == 0 ? target * target : target* target* x;
