@@ -7,8 +7,8 @@ public class GenerateParenthesis22 {
     public static void main(String[] args) {
         GenerateParenthesis22 generateParenthesis22 = new GenerateParenthesis22();
         List<String> abc  = generateParenthesis22.generateParenthesis(3);
-        System.out.println(abc.toString());
-
+        System.out.println(abc.size());
+        System.out.println(abc);
     }
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
@@ -22,13 +22,11 @@ public class GenerateParenthesis22 {
             return;
         }
 
-
         if (left < n) {
             quick(left + 1, right, n, s + "(", result);
         }
-
         if (right < left) {
-            quick(left , right + 1, n, s + ")", result);
+            quick(left, right + 1, n, s + ")", result);
         }
     }
 

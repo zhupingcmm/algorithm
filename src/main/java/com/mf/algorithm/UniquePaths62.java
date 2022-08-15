@@ -1,8 +1,8 @@
 package com.mf.algorithm;
 
-public class UniquePaths {
+public class UniquePaths62 {
     public static void main(String[] args) {
-        UniquePaths paths = new UniquePaths();
+        UniquePaths62 paths = new UniquePaths62();
         int result = paths.uniquePaths(3,7);
         System.out.println(result);
     }
@@ -17,11 +17,16 @@ public class UniquePaths {
             dp[0][i] = 1;
         }
 
+
+
+        System.out.println(dp);
+
         for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n ; j++) {
+            for (int j = 1; j < n; j++) {
                 dp[i][j] = dp[i-1][j] + dp[i][j-1];
             }
         }
+
         return dp[m-1][n-1];
     }
 }
