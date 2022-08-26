@@ -17,7 +17,7 @@ public class MaxSlidingWindow239 {
                 queue.removeLast();
             }
 
-            queue.offer(right);
+            queue.add(right);
 
             int left = right - k + 1;
             if (queue.peekFirst() < left) {
