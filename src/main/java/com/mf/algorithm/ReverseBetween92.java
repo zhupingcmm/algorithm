@@ -12,29 +12,23 @@ public class ReverseBetween92 {
 
     }
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        ListNode node = head;
-        ListNode cacheNode = null;
-        int count = 1;
-        while (node != null) {
-            if (count == left) {
-                ListNode curNode = node;
-                ListNode preNode = cacheNode;
-                int len = right - left + 1;
-                while (len > 0) {
-                    ListNode temp = node.next;
-                    node.next = preNode;
-                    preNode = curNode;
-                    curNode = temp;
-                    len--;
-                }
-                node.next = preNode;
-                break;
-            }
-            cacheNode = node;
-            node = node.next;
-            count ++;
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+        ListNode pre = dummyNode;
+        for (int i = 0; i < left -1; i++) {
+            pre = pre.next;
         }
-        return cacheNode;
+
+        ListNode cur = pre.next;
+        ListNode next;
+        for (int i = 0; i < right - left; i++) {
+            next = cur.next;
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
+        }
+
+        return dummyNode.next;
     }
 
 }
