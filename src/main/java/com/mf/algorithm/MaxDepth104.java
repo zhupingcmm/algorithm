@@ -6,25 +6,26 @@ public class MaxDepth104 {
     private int max = Integer.MIN_VALUE;
 
     public int maxDepth(TreeNode root) {
-        if (root == null) return 0;
+        dfs(0, root);
         return max;
     }
 
-    private void dfs (int level, TreeNode root) {
-        if (root == null) {
+    public void  dfs (int level, TreeNode node) {
+        if (node == null) {
             return;
         }
-        max = Math.max(max, level);
 
-        if (root.left != null ) {
-            dfs(level + 1, root.left);
+        max = Math.max(level, max);
+
+        if (node.left != null) {
+            dfs(level + 1, node.left);
         }
 
-        if (root.right != null) {
-            dfs(level + 1, root.right);
+        if (node.right != null) {
+            dfs(level + 1, node.right);
         }
-
     }
+
 
 
 }
