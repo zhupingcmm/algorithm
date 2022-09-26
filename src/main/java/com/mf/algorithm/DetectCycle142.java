@@ -1,6 +1,7 @@
 package com.mf.algorithm;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class DetectCycle142 {
 
@@ -13,17 +14,19 @@ public class DetectCycle142 {
         detectCycle142.detectCycle(node);
     }
     public ListNode detectCycle(ListNode head) {
-        if (head == null || head.next == null) return null;
+        if (head == null && head.next == null) return null;
         ListNode node = head;
+
         LinkedList<ListNode> queue = new LinkedList<>();
         while (node != null) {
-            if (queue.contains(node)) {
+            if (queue.contains(node)){
                 return node;
             }
 
             queue.add(node);
             node = node.next;
         }
+
         return null;
     }
 }

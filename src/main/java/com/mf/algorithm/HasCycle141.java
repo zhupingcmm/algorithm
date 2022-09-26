@@ -10,17 +10,20 @@ public class HasCycle141 {
     }
 
     public boolean hasCycle(ListNode head) {
-
         if (head == null || head.next == null) return false;
+
         LinkedList<ListNode> queue = new LinkedList<>();
-        ListNode node = head.next;
-        while (node!= null) {
+
+        ListNode node = head;
+        while (node != null) {
             if (queue.contains(node)) {
-              return true;
+                return true;
             }
+
             queue.add(node);
             node = node.next;
         }
+
         return false;
     }
 }

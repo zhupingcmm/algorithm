@@ -10,10 +10,10 @@ public class BubbleSort {
     public int [] bubbleSort (int [] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length -i -1; j++) {
-                if (arr[j] > arr[j+1]) {
-                    int temp = arr[j];
+                if(arr[j] > arr[j+1]) {
+                    int tem = arr[j];
                     arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+                    arr[j+1] = tem;
                 }
             }
         }
