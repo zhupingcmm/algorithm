@@ -1,6 +1,4 @@
 package com.mf.algorithm;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class CoinChange322 {
@@ -15,20 +13,23 @@ public class CoinChange322 {
 
 
     public int coinChange(int[] coins, int amount) {
-        int max = amount + 1;
-        int [] dp = new int[max];
-        Arrays.fill(dp, max);
-        dp[0] = 0;
+        int n = amount + 1;
 
-        for (int i = 1; i < max; i++) {
+        int [] dp = new int[n];
+
+        Arrays.fill(dp, n);
+        dp[0] = 0;
+        for (int i = 0; i < n; i++) {
             for (int coin : coins) {
-                if (coin <= i) {
-                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                if(coin <= i){
+                    dp[i] = Math.min(dp[i], dp[i -coin] +1);
                 }
             }
+
         }
 
-        return dp[amount] == max ? -1 : dp[amount];
+        return dp[amount] == n ? -1: dp[amount];
+
     }
 //    public int coinChange(int[] coins, int amount) {
 //        if(coins.length == 0){

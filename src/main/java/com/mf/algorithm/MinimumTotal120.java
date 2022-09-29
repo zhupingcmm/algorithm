@@ -24,7 +24,6 @@ public class MinimumTotal120 {
                 dp[i][j] = Math.min(dp[i + 1][j], dp[i+1][j+1]) + triangle.get(i).get(j);
             }
         }
-
         return dp[0][0];
     }
 }

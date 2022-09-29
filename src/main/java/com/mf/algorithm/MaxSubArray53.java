@@ -9,14 +9,17 @@ public class MaxSubArray53 {
         maxSubArray53.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
     }
     public int maxSubArray(int[] nums) {
-        int n = nums.length + 1;
-        int [] dp = new int[n];
+        int n = nums.length;
+
+        int [] dp = new int [n + 1];
+
         dp[0] = nums[0];
-        int max = dp[0];
-        for (int i = 1; i < n -1; i++) {
-            dp[i] = Math.max((dp[i-1] + nums[i]), nums[i]);
-            max = Math.max(max, dp[i]);
+        int max = nums[0];
+        for(int i =1; i < n; i++){
+            dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
+            max = Math.max(dp[i], max);
         }
+
         return max;
     }
 
