@@ -32,4 +32,12 @@ public class IsValidBST98 {
 
         return true;
     }
+
+    private boolean dfs (TreeNode node) {
+        if (node == null) return true;
+        if (!dfs(node.left)) return false;
+        if (node.val <= preNode.val) return false;
+        preNode = node;
+        return dfs(node.right);
+    }
 }

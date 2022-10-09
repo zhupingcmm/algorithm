@@ -23,8 +23,9 @@ public class GenerateParenthesis22 {
             return;
         }
 
-        if (left < n) dfs(left + 1, right, n, s +"(", result);
-        if (right < left) dfs(left, right + 1, n, s +")", result);
+        if (left < n) dfs(left + 1, right, n, s + "(", result);
+        if (right < left) dfs(left, right + 1, n, s + ")", result);
+
     }
 
 

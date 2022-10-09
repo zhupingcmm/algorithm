@@ -6,18 +6,19 @@ public class SearchMatrix74 {
         searchMatrix74.searchMatrix(new int[][]{}, 3);
     }
     public boolean searchMatrix(int[][] matrix, int target) {
-        int x = 0;
-        int y = matrix.length -1;
-       while (y >= 0 && x < matrix[0].length){
-           int num = matrix[y][x];
-           if (num == target) {
-               return true;
-           } else if (num > target){
-               y --;
-           } else {
-               x ++;
-           }
-       }
-       return false;
+
+        int m = matrix.length - 1;
+        int n = 0;
+        while (m>=0 && n < matrix[0].length){
+            int res = matrix[m][n];
+            if (res == target){
+                return true;
+            } else if (target < res){
+                m--;
+            } else {
+                n++;
+            }
+        }
+        return false;
     }
 }
