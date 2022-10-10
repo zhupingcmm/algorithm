@@ -12,24 +12,24 @@ public class Subsets78 {
 
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        dfs(0, nums, result, new ArrayList<>());
-
+        dfs(0, nums, new ArrayList<>(), result);
         System.out.println(result);
         return result;
     }
 
-    public void dfs(int level, int[]nums,  List<List<Integer>> result, List<Integer> list) {
+    private void dfs (int level, int [] nums, List<Integer> list, List<List<Integer>> result){
         if (level == nums.length) {
             result.add(new ArrayList<>(list));
             return;
         }
 
-        //不选
-        dfs(level + 1, nums, result, list);
-        //选
+        // 不选
+        dfs(level + 1, nums, list, result);
+
+        // 选
         list.add(nums[level]);
-        dfs(level + 1, nums, result, list);
-        //reverse
-        list.remove(list.size() -1);
+        dfs(level + 1, nums, list, result);
+
+        list.remove(list.size() - 1);
     }
 }
