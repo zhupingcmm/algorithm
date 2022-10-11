@@ -20,15 +20,17 @@ public class NumIslands200 {
 
         int m = grid.length;
         int n = grid[0].length;
+
         int count = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1'){
-                    dfs(i,j,grid);
-                    ++count;
+                if (grid[i][j] == '1') {
+                    dfs(i, j, grid);
+                    count++;
                 }
             }
         }
+
         return count;
     }
 
@@ -40,4 +42,6 @@ public class NumIslands200 {
         dfs(i, j-1, grid);
         dfs(i, j+1, grid);
     }
+
+
 }

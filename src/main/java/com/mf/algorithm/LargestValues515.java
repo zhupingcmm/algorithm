@@ -8,28 +8,20 @@ public class LargestValues515 {
     public List<Integer> largestValues(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root == null) return result;
-
         LinkedList<TreeNode> queue = new LinkedList<>();
+
         queue.offer(root);
-
-        while (!queue.isEmpty()){
-
-            int currentSize = queue.size();
-
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             int max = Integer.MIN_VALUE;
-            for (int i = 0; i < currentSize; i++) {
-
-                TreeNode treeNode = queue.poll();
-
-                max = Math.max(max, treeNode.val);
-                if (treeNode.left != null) queue.offer(treeNode.left);
-                if (treeNode.right != null) queue.offer(treeNode.right);
-
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                max = Math.max(node.val, max);
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
             }
-
             result.add(max);
         }
-
         return result;
     }
 }

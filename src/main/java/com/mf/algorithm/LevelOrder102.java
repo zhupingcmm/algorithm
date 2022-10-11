@@ -24,6 +24,7 @@ public class LevelOrder102 {
                 list.add(treeNode.val);
             }
             result.add(list);
+
         }
         return result;
     }
