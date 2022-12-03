@@ -8,13 +8,13 @@ public class RemoveDuplicates26 {
 
     public int removeDuplicates (int [] nums) {
 
-        int left = 0;
-        for (int right = 0; right < nums.length; right++) {
-            if (nums[left] != nums[right]) {
-                left++;
-                nums[left] = nums[right];
+        int index = 0;
+        for (int i = 0; i < nums.length ; i++) {
+            if (nums[index] != nums[i]) {
+                index++;
+                nums[index] = nums[i];
             }
         }
-        return left + 1;
+        return index + 1;
     }
 }

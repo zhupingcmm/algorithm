@@ -11,7 +11,7 @@ public class Search704 {
         int left = 0;
         int right = nums.length -1;
         while (left <= right) {
-            int mid = (left + right) / 2;
+            int mid = (right + left) / 2;
             int res = nums[mid];
             if (res == target) {
                 return mid;
@@ -21,6 +21,7 @@ public class Search704 {
                 right = mid -1;
             }
         }
+
         return -1;
     }
 }

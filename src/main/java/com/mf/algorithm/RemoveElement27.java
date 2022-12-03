@@ -8,16 +8,18 @@ public class RemoveElement27 {
         System.out.println(result);
     }
 
-    public int removeElement(int[] nums, int val) {
+    /**
+     * 不能借助额外的空间
+     * 移除 数组 nums中等于val的数，得到最后数组的最终长度 ，可以 转换为移除数组中nums 中不等于val的数的总和
+     */
 
-        int left = 0;
-        for (int right = 0; right < nums.length ; right++) {
-            if (nums[right] != val) {
-                nums[left++] = nums[right];
+    public int removeElement(int[] nums, int val) {
+        int index = 0;
+        for (int i = 0; i < nums.length ; i++) {
+            if (nums[i] != val){
+                nums[index++] = nums[i];
             }
         }
-        System.out.println(nums.toString());
-
-        return left;
+        return index;
     }
 }

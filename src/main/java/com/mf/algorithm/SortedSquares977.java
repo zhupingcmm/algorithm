@@ -8,15 +8,16 @@ public class SortedSquares977 {
     public int[] sortedSquares(int[] nums) {
         int length = nums.length -1;
         int [] result = new int[length + 1];
-
         int left = 0;
         int right = length;
-        while (left<=right) {
-            if (nums[left]*nums[left] > nums[right]*nums[right]) {
+
+        while (left <= right) {
+
+            if (nums[left] * nums[left] > nums[right]*nums[right]) {
                 result[length--] = nums[left] * nums[left];
                 left++;
-            } else  {
-                result[length--] = nums[right]*nums[right];
+            } else {
+                result[length--] = nums[right] * nums[right];
                 right--;
             }
         }
