@@ -1,8 +1,8 @@
 package com.mf.algorithm;
 
-public class Search701 {
+public class Search704 {
     public static void main(String[] args) {
-        Search701 search701 = new Search701();
+        Search704 search701 = new Search704();
         int result = search701.search(new int[]{-1,0,3,5,9,12}, 9);
         System.out.println(result);
     }
