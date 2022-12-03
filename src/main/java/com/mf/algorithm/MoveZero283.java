@@ -11,14 +11,15 @@ public class MoveZero283 {
     }
 
     public void moveZero(int[] nums) {
-        int lastZeroIndex = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                nums[lastZeroIndex++] = nums[i];
+        int left = 0;
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] != 0) {
+                nums[left++] = nums[right];
             }
         }
 
-        for (int i = lastZeroIndex; i < nums.length ; i++) {
+
+        for (int i = left; i < nums.length ; i++) {
             nums[i] = 0;
         }
 
