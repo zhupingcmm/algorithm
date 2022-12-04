@@ -14,19 +14,25 @@ public class DetectCycle142 {
         detectCycle142.detectCycle(node);
     }
     public ListNode detectCycle(ListNode head) {
-        if (head == null && head.next == null) return null;
-        ListNode node = head;
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode index1 = head;
 
-        LinkedList<ListNode> queue = new LinkedList<>();
-        while (node != null) {
-            if (queue.contains(node)){
-                return node;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                ListNode index2 = fast;
+                while (index1 != index2) {
+                    index1 = index1.next;
+                    index2 = index2.next;
+                }
+
+                return index1;
             }
-
-            queue.add(node);
-            node = node.next;
         }
 
         return null;
+
     }
 }

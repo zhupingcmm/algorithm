@@ -5,23 +5,19 @@ public class SwapPairs24 {
     public static void main(String[] args) {
     }
     public ListNode swapPairs(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode temp = head.next;
-        head.next = swapPairs(temp.next);
-        temp.next = head;
-        return temp;
-    }
-    class ListNode {
-        private int val;
-        private ListNode next;
-
-        public ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode cur = head;
+        while (pre.next != null && pre.next.next != null) {
+            ListNode tem = cur.next.next;
+            pre.next = cur.next;
+            cur.next.next = cur;
+            cur.next = tem;
+            pre = cur;
+            cur = tem;
         }
 
-        public ListNode(int val) {
-            this.val = val;
-        }
+        return dummy.next;
     }
 }

@@ -1,6 +1,5 @@
 package com.mf.algorithm;
 
-import java.util.List;
 
 public class ReverseList206 {
     public static void main(String[] args) {
@@ -8,29 +7,15 @@ public class ReverseList206 {
     }
 
     public ListNode reverseList(ListNode head) {
-        ListNode preNode = null;
-        ListNode curNode = head;
-        while (curNode != null) {
-            ListNode temp = curNode.next;
-            curNode.next = preNode;
-            preNode = curNode;
-            curNode = temp;
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
         }
-        return preNode;
+        return pre;
     }
 
-
-    class ListNode {
-        private int val;
-        private ListNode next;
-
-        public ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        public ListNode(int val) {
-            this.val = val;
-        }
-    }
 }
