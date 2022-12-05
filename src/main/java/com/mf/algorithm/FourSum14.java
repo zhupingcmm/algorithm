@@ -14,40 +14,29 @@ public class FourSum14 {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
 
-        for (int i = 0; i < nums.length - 3; i++) {
-
-            // nums[i] > target 直接返回, 剪枝操作
-            if (nums[i] > 0 && nums[i] > target) {
-                return result;
-            }
-
-            if (i > 0 && nums[i - 1] == nums[i]) {    // 对nums[i]去重
-                continue;
-            }
-
+        for (int i = 0; i < nums.length -3; i++) {
+            if (nums[i] > target) break;
+            if (i > 0 && nums[i] == nums[i-1]) continue;
             for (int j = i + 1; j < nums.length -2; j++) {
-
-                if (j > i + 1 && nums[j - 1] == nums[j]) {  // 对nums[j]去重
-                    continue;
-                }
+                if (j > i + 1 && nums[j] == nums[j-1]) continue;
 
                 int left = j + 1;
-                int right = nums.length - 1;
-                while (right > left) {
-                    long sum = (long) nums[i] + nums[j] + nums[left] + nums[right];
-                    if (sum > target) {
-                        while (right > left && nums[right] == nums[--right]) {};
-                    } else if (sum < target) {
-                        while (right > left && nums[left] == nums[++left]) {};
+                int right = nums.length -1;
+                while (left < right) {
+                    int sum = nums[i] + nums[j] + nums[left] + nums[right];
+                    if (sum < target) {
+                        while (left < right && nums[left] == nums[++left]){}
+                    } else if (sum > target) {
+                        while (left < right && nums[right] == nums[--right]){}
                     } else {
                         result.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
-                        // 对nums[left]和nums[right]去重
-                        while (right > left && nums[right] == nums[--right]) {};
-                        while (right > left && nums[left] == nums[++left]) {};
+                        while (left < right && nums[left] == nums[++left]){}
+                        while (left < right && nums[right] == nums[--right]){}
                     }
                 }
             }
         }
+
         return result;
 
     }
