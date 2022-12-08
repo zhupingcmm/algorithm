@@ -15,6 +15,14 @@ public class InorderTraversal94 {
         return result;
     }
 
+
+    private void dfs (TreeNode node, List<Integer> result) {
+        if (node == null) return;
+        dfs(node.left, result);
+        result.add(node.val);
+        dfs(node.right, result);
+    }
+
     private void useStack (TreeNode root, List<Integer> result) {
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);

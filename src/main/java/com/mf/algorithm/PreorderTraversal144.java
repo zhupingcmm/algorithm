@@ -7,20 +7,21 @@ public class PreorderTraversal144 {
 
     public static void main(String[] args) {
         PreorderTraversal144 preorderTraversal144 = new PreorderTraversal144();
-//        preorderTraversal144.preorderTraversal()
     }
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        helper(root, result);
-
+        dfs(root, result);
         return result;
     }
 
-    private void helper(TreeNode root, List<Integer> result) {
-        if (root == null) return;
-        result.add(root.val);
-        if (root.left != null) helper(root.left, result);
-        if (root.right != null) helper(root.right, result);
+    private void dfs(TreeNode node, List<Integer> result) {
+        if (node == null) {
+            return;
+        }
+        result.add(node.val);
+        dfs(node.left, result);
+        dfs(node.right, result);
     }
+
 
 }
