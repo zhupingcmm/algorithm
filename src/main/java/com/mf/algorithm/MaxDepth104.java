@@ -11,14 +11,22 @@ public class MaxDepth104 {
     }
 
 
+    private int dfs (TreeNode root) {
+        if (root == null) return 0;
+        int left = dfs(root.left);
+        int right = dfs(root.right);
+        return Math.max(left, right) + 1;
 
-    private void dfs (int level, TreeNode node) {
-        if (node == null) return;
-        max = Math.max(max, level);
-
-        if (node.left != null) dfs(level + 1, node.left);
-        if (node.right != null) dfs(level + 1, node.right);
     }
+
+
+//    private void dfs (int level, TreeNode node) {
+//        if (node == null) return;
+//        max = Math.max(max, level);
+//
+//        if (node.left != null) dfs(level + 1, node.left);
+//        if (node.right != null) dfs(level + 1, node.right);
+//    }
 
     private int bfs (TreeNode root) {
         LinkedList<TreeNode> queue = new LinkedList<>();
