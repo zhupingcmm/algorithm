@@ -13,18 +13,19 @@ public class InvertTree226 {
     public TreeNode invertTreeDfs(TreeNode root) {
 
         if (root == null) return null;
-        swap(root);
+
         if (root.left != null) invertTreeDfs(root.left);
-        if(root.right != null) invertTreeDfs(root.right);
+        if (root.right != null) invertTreeDfs(root.right);
+        swap(root);
         return root;
     }
 
-    private void swap (TreeNode root){
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-
+    private void swap(TreeNode node) {
+        TreeNode temp = node.left;
+        node.left = node.right;
+        node.right = temp;
     }
+
 
     public TreeNode invertTreeBfs(TreeNode root) {
 
