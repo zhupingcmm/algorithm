@@ -3,6 +3,8 @@ package com.mf.algorithm;
 import java.util.Stack;
 
 public class IsValidBST98 {
+
+    private long maxValue = Long.MIN_VALUE;
     private TreeNode preNode = null;
 //    public boolean isValidBST(TreeNode root) {
 //
@@ -17,20 +19,15 @@ public class IsValidBST98 {
 
 
     public boolean isValidBST(TreeNode root) {
-
-        Stack<TreeNode> stack = new Stack<>();
-        while (!stack.isEmpty() || root != null) {
-            while (root != null) {
-                stack.push(root);
-                root = root.left;
-            }
-            root = stack.pop();
-            if (preNode != null && root.val <= preNode.val) return false;
-            preNode = root;
-            root = root.right;
+        if (root == null) return true;
+        boolean left = isValidBST(root.left);
+        if (root.val > maxValue) {
+            maxValue = root.val;
+        } else {
+            return false;
         }
-
-        return true;
+        boolean right = isValidBST(root.right);
+        return left && right;
     }
 
     private boolean dfs (TreeNode node) {

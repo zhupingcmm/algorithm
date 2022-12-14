@@ -2,7 +2,7 @@ package com.mf.algorithm;
 
 import java.util.LinkedList;
 
-public class HasPathSum {
+public class HasPathSum112 {
 
     public boolean hasPathSum(TreeNode root, int targetSum) {
 //        return dfs(root, targetSum);
@@ -39,7 +39,18 @@ public class HasPathSum {
     }
     private boolean dfs(TreeNode root, int targetSum){
         if (root == null) return false;
-        if (root.left == null && root.right == null) return targetSum-root.val ==0;
-        return hasPathSum(root.left , targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+        if (root.left == null && root.right == null) return targetSum == root.val;
+        if (root.left != null) {
+            targetSum -= root.val;
+            if (dfs(root.left, targetSum)) return true;
+            targetSum += root.val;
+        }
+
+        if (root.right != null) {
+            targetSum -=root.val;
+            if (dfs(root.right, targetSum)) return true;
+            targetSum += root.val;
+        }
+        return false;
     }
 }
