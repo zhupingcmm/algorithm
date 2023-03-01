@@ -4,28 +4,23 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Subsets78 {
-    public static void main(String[] args) {
-        int [] nums = new int[]{1,2,3};
-        Subsets78 subsets = new Subsets78();
-        System.out.println(subsets.subsets(nums));
-    }
+public class Permute46 {
 
+    public static void main(String[] args) {
+        Permute46 permute46 = new Permute46();
+        System.out.println(permute46.permute(new int[]{1,2,3}));
+    }
 
     private LinkedList<Integer> paths = new LinkedList<>();
     private List<List<Integer>> result = new ArrayList<>();
-
-    public List<List<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> permute(int[] nums) {
         dfs(0, nums);
         return result;
     }
 
-
-    private void dfs(int start, int[] nums) {
-
-        result.add(new ArrayList<>(paths));
-
-        if (start >= nums.length) {
+    private void dfs (int start, int[] nums) {
+        if (start == nums.length) {
+            result.add(new ArrayList<>(paths));
             return;
         }
 
@@ -34,6 +29,6 @@ public class Subsets78 {
             dfs(i + 1, nums);
             paths.removeLast();
         }
-    }
 
+    }
 }

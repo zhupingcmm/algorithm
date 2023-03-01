@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public class LetterCombinations17 {
-    private List<String> result = new ArrayList<>();
     public static void main(String[] args) {
         LetterCombinations17 letterCombinations = new LetterCombinations17();
-        letterCombinations.letterCombinations("23");
+        System.out.println(letterCombinations.letterCombinations(""));;
     }
+
+    private List<String> result = new ArrayList<>();
     public List<String> letterCombinations(String digits) {
-        List<String> result = new ArrayList<>();
+        if (digits == null || "".equals(digits)) return result;
+
         HashMap<String, String> map = new HashMap<>();
         map.put("2", "abc");
         map.put("3", "def");
@@ -22,21 +24,20 @@ public class LetterCombinations17 {
         map.put("7", "pqrs");
         map.put("8", "tuv");
         map.put("9", "wxyz");
-        dfs(0, digits, "", result, map);
-        System.out.println(result);
+        dfs(0, "", digits, map);
         return result;
     }
 
-    private void dfs (int level, String digits, String s, List<String> result, HashMap<String, String> map) {
-        if (level == digits.length()) {
+    private void dfs(int index, String s, String digits, HashMap<String, String> map){
+        if (digits.length() == index) {
             result.add(s);
             return;
         }
 
-        String letters = map.get(String.valueOf(digits.charAt(level)));
+        String res = map.get(String.valueOf(digits.charAt(index)));
 
-        for (int j = 0; j <letters.length(); j++) {
-            dfs(level + 1, digits, s + letters.charAt(j), result, map);
+        for (int i = 0; i < res.length(); i++) {
+            dfs(index + 1, s + res.charAt(i),  digits, map);
         }
     }
 
