@@ -1,7 +1,8 @@
 package com.mf.algorithm;
 
 public class GetMinimumDifference530 {
-    private long result = Long.MAX_VALUE;
+    private long result = Integer.MAX_VALUE;
+
     TreeNode pre = null;
     public int getMinimumDifference(TreeNode root) {
         if (root == null) return 0;

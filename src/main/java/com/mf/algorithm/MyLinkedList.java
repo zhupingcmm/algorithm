@@ -2,71 +2,68 @@ package com.mf.algorithm;
 
 public class MyLinkedList {
 
-    private ListNode dummy;
-    private int size;
+
+    ListNode dummyNode;
+    int size = 0;
 
     public MyLinkedList() {
-        dummy = new ListNode(0);
-        size = 0;
+        dummyNode = new ListNode(-1);
+
+
     }
 
-
     public int get(int index) {
-        if (index < 0 || index >= size) return -1;
-        ListNode cur = dummy;
-        int i = 0;
-        while (i++ <= index) {
+        int count = size;
+        ListNode cur = dummyNode.next;
+        while (count++ <= index) {
             cur = cur.next;
         }
-        return cur.val;
+        size++;
+        return  cur.val;
     }
 
     public void addAtHead(int val) {
         ListNode node = new ListNode(val);
-        ListNode cur = dummy;
-        node.next = cur.next;
-        cur.next = node;
+        ListNode pre = dummyNode;
+        ListNode cur = dummyNode.next;
+        pre.next = node;
+        node.next = cur;
         size++;
+
     }
 
     public void addAtTail(int val) {
-        ListNode node = new ListNode(val);
-        ListNode cur = dummy;
-        for (int i = 0; i < size; i++) {
+        ListNode cur = dummyNode.next;
+        while (cur.next != null) {
             cur = cur.next;
         }
-        cur.next = node;
+        cur.next = new ListNode(val);
         size++;
-
     }
 
     public void addAtIndex(int index, int val) {
-        if (index > size) {
-            return;
-        }
-        if (index < 0) {
-            index = 0;
-        }
         ListNode node = new ListNode(val);
-        ListNode cur = dummy;
-        for (int i = 0; i < index; i++) {
+        ListNode cur = dummyNode.next;
+        int count = 0;
+        while (count++ <index) {
             cur = cur.next;
         }
         node.next = cur.next;
         cur.next = node;
-        size++;
+        size--;
 
     }
 
     public void deleteAtIndex(int index) {
-        if (index < 0 || index >= size) {
-            return;
-        }
-        ListNode cur = dummy;
-        for (int i = 0; i < index; i++) {
+
+        ListNode cur = dummyNode.next;
+        int count = 0;
+        while (count++ <= index) {
             cur = cur.next;
         }
+
         cur.next = cur.next.next;
+
         size--;
     }
 }

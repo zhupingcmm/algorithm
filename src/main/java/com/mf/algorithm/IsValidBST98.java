@@ -1,5 +1,6 @@
 package com.mf.algorithm;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class IsValidBST98 {
@@ -18,14 +19,12 @@ public class IsValidBST98 {
 //    }
 
 
+    TreeNode pre = null;
     public boolean isValidBST(TreeNode root) {
         if (root == null) return true;
         boolean left = isValidBST(root.left);
-        if (root.val > maxValue) {
-            maxValue = root.val;
-        } else {
-            return false;
-        }
+        if (pre != null && pre.val >= root.val) return false;
+        pre = root;
         boolean right = isValidBST(root.right);
         return left && right;
     }
@@ -36,5 +35,28 @@ public class IsValidBST98 {
         if (node.val <= preNode.val) return false;
         preNode = node;
         return dfs(node.right);
+    }
+
+    private boolean bfs(TreeNode root) {
+        if (root == null) return true;
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode treeNode = queue.poll();
+                TreeNode left = treeNode.left;
+                TreeNode right = treeNode.right;
+                if(left != null) {
+                    if (left.val >= treeNode.val) return false;
+                    queue.offer(left);
+                }
+                if (right != null) {
+                    if (right.val <= treeNode.val) return false;
+                    queue.offer(right);
+                }
+            }
+        }
+        return true;
     }
 }
