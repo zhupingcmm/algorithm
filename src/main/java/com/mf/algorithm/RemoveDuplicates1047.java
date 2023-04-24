@@ -13,18 +13,23 @@ public class RemoveDuplicates1047 {
     public String removeDuplicates(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
-            if (stack.isEmpty() || stack.peek() != s.charAt(i)) {
-                stack.push(s.charAt(i));
+            char item = s.charAt(i);
+            if (!stack.isEmpty()) {
+                if (stack.peek() == item) {
+                    stack.pop();
+                } else {
+                    stack.push(item);
+                }
             } else {
-                stack.pop();
+                stack.push(item);
             }
         }
-
-        char [] chars = new char[stack.size()];
-
-        for (int i = stack.size() -1 ; i >= 0; i--) {
-            chars[i] = stack.pop();
+        int len = stack.size() -1;
+        char [] chars = new char[len + 1];
+        while (!stack.isEmpty()) {
+            chars[len--] = stack.pop();
         }
         return new String(chars);
+
     }
 }

@@ -19,6 +19,7 @@ public class Intersection349 {
     public int[] intersection(int[] nums1, int[] nums2) {
         Set<Integer> set1 = new HashSet<>();
         Set<Integer> set2 = new HashSet<>();
+
         for (int i = 0; i < nums1.length; i++) {
             set1.add(nums1[i]);
         }
@@ -29,11 +30,15 @@ public class Intersection349 {
             }
         }
 
-        int index = 0;
-        int[]result = new int[set2.size()];
-        for (int val :set2) {
-            result[index++] = val;
+
+
+        int [] result = new int[set2.size()];
+        int count = 0;
+        for (Integer ele : set2) {
+            result[count++] = ele;
         }
+
         return result;
+
     }
 }

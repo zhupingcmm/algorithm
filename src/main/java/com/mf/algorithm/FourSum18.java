@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FourSum14 {
+public class FourSum18 {
     public static void main(String[] args) {
-        FourSum14 fourSum14 = new FourSum14();
-        List<List<Integer>> res = fourSum14.fourSum(new int[]{-2,-1,-1,1,1,2,2}, 8);
+        FourSum18 fourSum14 = new FourSum18();
+        List<List<Integer>> res = fourSum14.fourSum(new int[]{1,-2,-5,-4,-3,3,3,5}, -11);
         System.out.println(res);
     }
     public List<List<Integer>> fourSum(int[] nums, int target) {
@@ -15,11 +15,11 @@ public class FourSum14 {
         Arrays.sort(nums);
 
         for (int i = 0; i < nums.length -3; i++) {
-            if (nums[i] > target) break;
             if (i > 0 && nums[i] == nums[i-1]) continue;
+            if (nums[i] > 0 && nums[i] > target) break;
+
             for (int j = i + 1; j < nums.length -2; j++) {
                 if (j > i + 1 && nums[j] == nums[j-1]) continue;
-
                 int left = j + 1;
                 int right = nums.length -1;
                 while (left < right) {
@@ -27,17 +27,17 @@ public class FourSum14 {
                     if (sum < target) {
                         while (left < right && nums[left] == nums[++left]){}
                     } else if (sum > target) {
-                        while (left < right && nums[right] == nums[--right]){}
+                        while (left < right && nums[right] == nums[--right]){};
                     } else {
                         result.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
                         while (left < right && nums[left] == nums[++left]){}
-                        while (left < right && nums[right] == nums[--right]){}
+                        while (left < right && nums[right] == nums[--right]){};
                     }
                 }
             }
+
         }
 
         return result;
-
     }
 }

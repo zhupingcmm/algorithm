@@ -9,13 +9,12 @@ public class TopKFrequent347 {
 
     public static void main(String[] args) {
         TopKFrequent347 topKFrequent347 = new TopKFrequent347();
-        topKFrequent347.topKFrequent(new int[]{1,1,1,2,2,3}, 2);
+        topKFrequent347.topKFrequent(new int[]{3,0,1,0}, 1);
     }
     public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>((p1, p2) -> p1[1] - p2[1]);
 
-        Map<Integer, Integer> map = new HashMap<>();
-        Queue<int[]> priorityQueue= new PriorityQueue<>((p1, p2) -> p1[1] - p2[1]);
-        int [] result = new int[k -1];
         for (int i = 0; i < nums.length; i++) {
             int key = nums[i];
             if (map.containsKey(key)) {
@@ -25,24 +24,27 @@ public class TopKFrequent347 {
             }
         }
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        for (Integer key : map.keySet()) {
             if (priorityQueue.size() < k) {
-                priorityQueue.add(new int[]{entry.getKey(), entry.getValue()});
+                priorityQueue.add(new int[]{key, map.get(key)});
             } else {
-                if ( !priorityQueue.isEmpty() && entry.getValue() > priorityQueue.peek()[1]) {
-                    priorityQueue.poll();
-                    priorityQueue.add(new int[]{entry.getKey(), entry.getValue()});
+                if (!priorityQueue.isEmpty()) {
+                    if (map.get(key) > priorityQueue.peek()[1]) {
+                        priorityQueue.poll();
+                        priorityQueue.add(new int[]{key, map.get(key)});
+                    }
                 }
+
             }
         }
 
-        for (int i = k -1; i >= 0 ; i--) {
-            result[i] = priorityQueue.poll()[0];
+        int [] result = new int[k];
+        int index = 0;
+
+        while (!priorityQueue.isEmpty()) {
+            result[index++] = priorityQueue.poll()[0];
         }
 
-
         return result;
-
-
     }
 }

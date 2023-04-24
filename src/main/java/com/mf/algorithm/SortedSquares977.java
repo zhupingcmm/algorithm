@@ -6,24 +6,26 @@ public class SortedSquares977 {
         sortedSquares977.sortedSquares(new int[]{-4,-1,0,3,10});
     }
     public int[] sortedSquares(int[] nums) {
-        int len = nums.length -1;
-        int [] result = new int[nums.length];
-
         int left = 0;
+        int len = nums.length -1;
         int right = len;
+
+        int [] result = new int[len + 1];
         while (left <= right) {
-            int lRes = nums[left] * nums[left];
-            int rRes = nums[right] * nums[right];
-            if (lRes < rRes) {
-                result[len--] = rRes;
+            int leftRes = nums[left] * nums[left];
+            int rightRes = nums[right] * nums[right];
+            if (leftRes > rightRes) {
+                result[len--] = leftRes;
+                left++;
+            } else if (leftRes < rightRes) {
+                result[len--] = rightRes;
                 right--;
-            } else  {
-                result[len--] = lRes;
+            } else {
+                result[len--] = leftRes;
                 left++;
             }
         }
 
         return result;
-
     }
 }

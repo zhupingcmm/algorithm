@@ -10,13 +10,13 @@ public class IsBalanced110 {
     }
 
     private int getHeight (TreeNode root) {
-        if(root == null) return 0;
-        int leftHeight = getHeight(root.left);
-        if (leftHeight == -1) return -1;
-        int rightHeight = getHeight(root.right);
-        if (rightHeight == -1) return -1;
-        if(Math.abs(rightHeight - leftHeight) > -1) return -1;
-        return Math.max(leftHeight, rightHeight) + 1;
+        if(root == null) return -1;
+        int left = getHeight(root.left);
+        if (left == -1) return -1;
+        int right = getHeight(root.right);
+        if (right == -1) return -1;
+        if ( Math.abs(left - right) > 1) return -1;
+        return Math.max(left, right) + 1;
     }
 
 }

@@ -5,18 +5,22 @@ import java.util.Queue;
 
 public class MyStack {
 
-    Queue<Integer> queue;
 
+    Queue<Integer> queue;
     public MyStack() {
         queue = new LinkedList<>();
     }
 
+    // 在push方法中就完成了 栈的构建， 先进后出
     public void push(int x) {
+        // 添加到队列尾部，先进先出
         queue.offer(x);
+        // 排序
         int size = queue.size();
-        //移动除了 A 的其它数
-        while (size-- > 1)
+        while (size-- > 1) {
+            // 从 队列头部 去元素放到队列尾部
             queue.offer(queue.poll());
+        }
     }
 
     public int pop() {
@@ -25,10 +29,11 @@ public class MyStack {
 
     public int top() {
         return queue.peek();
+
     }
 
     public boolean empty() {
-        return queue.isEmpty();
+         return queue.isEmpty();
     }
 
 

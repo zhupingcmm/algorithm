@@ -8,32 +8,28 @@ public class MyLinkedList {
 
     public MyLinkedList() {
         dummyNode = new ListNode(-1);
-
-
     }
 
     public int get(int index) {
         int count = size;
         ListNode cur = dummyNode.next;
-        while (count++ <= index) {
+        while (count++>=index) {
             cur = cur.next;
         }
-        size++;
-        return  cur.val;
+        return cur.val;
     }
 
     public void addAtHead(int val) {
         ListNode node = new ListNode(val);
-        ListNode pre = dummyNode;
         ListNode cur = dummyNode.next;
+        ListNode pre = dummyNode;
         pre.next = node;
         node.next = cur;
         size++;
-
     }
 
     public void addAtTail(int val) {
-        ListNode cur = dummyNode.next;
+        ListNode cur =dummyNode.next;
         while (cur.next != null) {
             cur = cur.next;
         }
@@ -42,28 +38,30 @@ public class MyLinkedList {
     }
 
     public void addAtIndex(int index, int val) {
-        ListNode node = new ListNode(val);
-        ListNode cur = dummyNode.next;
         int count = 0;
-        while (count++ <index) {
-            cur = cur.next;
-        }
-        node.next = cur.next;
-        cur.next = node;
-        size--;
-
-    }
-
-    public void deleteAtIndex(int index) {
-
+        if (index > size) return;
         ListNode cur = dummyNode.next;
-        int count = 0;
         while (count++ <= index) {
             cur = cur.next;
         }
 
-        cur.next = cur.next.next;
+        ListNode node = new ListNode(val);
+        ListNode next = cur.next;
+        cur.next = node;
+        node.next = next;
+        size++;
+    }
 
+    public void deleteAtIndex(int index) {
+        if (index > size) return;
+        int count =0;
+        ListNode pre = dummyNode;
+        ListNode cur = dummyNode.next;
+        while (count++ <= index) {
+
+            cur = cur.next;
+        }
+        cur.next = cur.next.next;
         size--;
     }
 }

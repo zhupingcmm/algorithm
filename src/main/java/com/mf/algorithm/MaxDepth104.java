@@ -5,25 +5,24 @@ import java.util.Queue;
 
 public class MaxDepth104 {
 
-//    public int maxDepth(TreeNode root) {
-//
-//        return null;
-//    }
 
 
+    public int maxDeptDfs(TreeNode root) {
 
-    private int dfs(TreeNode root){
         if (root == null) return 0;
-        int leftHeight = dfs(root.left);
-        int rightHeight = dfs(root.right);
-        return Math.max(leftHeight, rightHeight) + 1;
+
+        int left = maxDeptDfs(root.left);
+        int right = maxDeptDfs(root.right);
+        return Math.max(left, right) + 1;
     }
 
-    private int bfs(TreeNode root) {
-        int dep = 0;
-        if (root == null) return dep;
+
+    public int maxDepthBfs(TreeNode root){
+        int depth = 0;
+        if (root == null) return depth;
         LinkedList<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        queue.offer(root);
+
 
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -32,11 +31,18 @@ public class MaxDepth104 {
                 if (node.left != null) queue.offer(node.left);
                 if (node.right != null) queue.offer(node.right);
             }
-            dep++;
+
+            depth++;
+
         }
 
-        return dep;
+        return depth;
+
     }
+
+
+
+
 
 
 

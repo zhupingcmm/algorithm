@@ -6,9 +6,7 @@ public class RemoveElements203 {
     }
 
     public ListNode removeElements(ListNode head, int val) {
-        if (head == null) return head;
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
+        ListNode dummyNode = new ListNode(-1, head);
         ListNode pre = dummyNode;
         ListNode cur = head;
 
@@ -17,13 +15,10 @@ public class RemoveElements203 {
                 pre.next = cur.next;
             } else {
                 pre = cur;
-
             }
+
             cur = cur.next;
-
         }
-
         return dummyNode.next;
-
     }
 }

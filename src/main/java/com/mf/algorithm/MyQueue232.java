@@ -4,11 +4,12 @@ import java.util.Stack;
 
 public class MyQueue232 {
 
-    private Stack<Integer> in = new Stack();
-    private Stack<Integer> out = new Stack();
+    Stack<Integer> in;
+    Stack<Integer> out;
 
     public MyQueue232() {
-
+        in = new Stack<>();
+        out = new Stack<>();
     }
 
     public void push(int x) {
@@ -16,22 +17,20 @@ public class MyQueue232 {
     }
 
     public int pop() {
-        dataIn();
+        insert();
         return out.pop();
     }
 
     public int peek() {
-        dataIn();
+        insert();
         return out.peek();
     }
 
     public boolean empty() {
-        return in.isEmpty() && out.isEmpty();
+        return in.empty() && out.isEmpty();
     }
-
-
-    private void dataIn () {
-        if (out.isEmpty()) {
+    private void insert(){
+        if (out.empty()) {
             while (!in.isEmpty()) {
                 out.push(in.pop());
             }

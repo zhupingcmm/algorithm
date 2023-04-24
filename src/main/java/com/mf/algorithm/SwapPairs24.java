@@ -1,14 +1,18 @@
 package com.mf.algorithm;
 
 
+import java.util.List;
+
 public class SwapPairs24 {
     public static void main(String[] args) {
     }
     public ListNode swapPairs(ListNode head) {
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode pre = dummy;
+
+        ListNode dummyNode = new ListNode(-1, head);
+
+        ListNode pre = dummyNode;
         ListNode cur = head;
+
         while (pre.next != null && pre.next.next != null) {
             ListNode tem = cur.next.next;
             pre.next = cur.next;
@@ -17,7 +21,6 @@ public class SwapPairs24 {
             pre = cur;
             cur = tem;
         }
-
-        return dummy.next;
+        return dummyNode.next;
     }
 }

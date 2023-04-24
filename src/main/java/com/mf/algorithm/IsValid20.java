@@ -13,23 +13,29 @@ public class IsValid20 {
     }
 
     public boolean isValid(String s) {
+        HashMap<Character, Character> map = new HashMap<>();
+        map.put(')', '(');
+        map.put(']', '[');
+        map.put('}', '{');
 
         Stack<Character> stack = new Stack<>();
-        Map<Character, Character> map = new HashMap<>();
-        map.put(')', '(');
-        map.put(']','[');
-        map.put('}', '{');
         for (int i = 0; i < s.length(); i++) {
-            Character val = s.charAt(i);
-            if (map.values().contains(val)) {
-                stack.push(s.charAt(i));
-            } else {
-                if ( stack.isEmpty() || stack.peek() != map.get(val)) {
+            Character key = s.charAt(i);
+            if (map.containsKey(key)) {
+                // 右括号 需要进行判断
+                if (stack.isEmpty()) return false;
+                Character item = stack.peek();
+                if (map.get(key).equals(item)) {
+                    stack.pop();
+                } else {
                     return false;
                 }
-                stack.pop();
+            } else {
+                // 左括号 直接放入
+                stack.push(key);
             }
         }
+
 
         return stack.isEmpty();
     }
