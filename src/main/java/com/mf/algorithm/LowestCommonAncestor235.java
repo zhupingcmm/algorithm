@@ -5,12 +5,14 @@ public class LowestCommonAncestor235 {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;
 
-        if (root.val > q.val && root.val > p.val) {
-            return lowestCommonAncestor(root.left, p, q);
+        if (root.val > p.val && root.val > q.val) {
+            TreeNode left =  lowestCommonAncestor(root.left, p, q);
+           if ( left != null) return left;
         }
 
         if (root.val < p.val && root.val < q.val) {
-            return lowestCommonAncestor(root.right, p, q);
+            TreeNode right = lowestCommonAncestor(root.right, p, q);
+            if (right != null) return right;
         }
 
         return root;

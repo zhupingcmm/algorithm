@@ -1,62 +1,56 @@
 package com.mf.algorithm;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class IsValidBST98 {
 
-    private long maxValue = Long.MIN_VALUE;
     private TreeNode preNode = null;
-//    public boolean isValidBST(TreeNode root) {
-//
-//        if (root == null) return true;
-//        if (!isValidBST(root.left)) return  false;
-//
-//        if (preNode !=null && preNode.val >= root.val) return false;
-//
-//        preNode = root;
-//        return isValidBST(root.right) && isValidBST(root.left);
-//    }
 
 
     TreeNode pre = null;
     public boolean isValidBST(TreeNode root) {
-        if (root == null) return true;
-        boolean left = isValidBST(root.left);
-        if (pre != null && pre.val >= root.val) return false;
-        pre = root;
-        boolean right = isValidBST(root.right);
-        return left && right;
+    return dfs(root);
     }
 
-    private boolean dfs (TreeNode node) {
-        if (node == null) return true;
-        if (!dfs(node.left)) return false;
-        if (node.val <= preNode.val) return false;
-        preNode = node;
-        return dfs(node.right);
+    private boolean dfs (TreeNode root) {
+        if (root == null) return true;
+        boolean left = dfs(root.left);
+        if (pre != null && pre.val >= root.val) {
+            return false;
+        }
+        pre = root;
+
+        boolean right = dfs(root.right);
+
+        return left && right;
+
     }
 
     private boolean bfs(TreeNode root) {
+
         if (root == null) return true;
-        LinkedList<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                TreeNode treeNode = queue.poll();
-                TreeNode left = treeNode.left;
-                TreeNode right = treeNode.right;
-                if(left != null) {
-                    if (left.val >= treeNode.val) return false;
-                    queue.offer(left);
+                TreeNode node = queue.poll();
+
+
+                if (node.left != null) {
+                    if (node.left.val >= node.val) return false;
+                    queue.offer(node.left);
                 }
-                if (right != null) {
-                    if (right.val <= treeNode.val) return false;
-                    queue.offer(right);
+                if (node.right != null) {
+                    if (node.right.val <= node.val) return false;
+                    queue.offer(node.right);
                 }
             }
         }
+
         return true;
+
     }
 }

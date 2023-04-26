@@ -1,6 +1,9 @@
 package com.mf.algorithm;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class HasPathSum112 {
 
@@ -11,46 +14,50 @@ public class HasPathSum112 {
     }
 
     private boolean bfs(TreeNode root, int targetSum){
-        if (root==null) return false;
-        LinkedList<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        LinkedList<Integer> sumQueue = new LinkedList<>();
-        sumQueue.offer(0);
-        while (!queue.isEmpty()){
+        Queue<Integer> nodes = new LinkedList<>();
+        nodes.add(0);
+        while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                TreeNode poll = queue.poll();
-                Integer sum = sumQueue.poll();
-                if (poll.left==null && poll.right==null && (poll.val+sum) == targetSum){
+                TreeNode node = queue.poll();
+                int sum = nodes.poll();
+                if (node.left == null && node.right == null && (sum + node.val) == targetSum  ) {
                     return true;
                 }
-                if (poll.left!=null){
-                    queue.offer(poll.left);
-                    sumQueue.offer(sum+poll.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                    nodes.add(sum + node.val);
                 }
-                if (poll.right!=null){
-                    queue.offer(poll.right);
-                    sumQueue.offer(sum+poll.val);
+                if (node.right != null) {
+                    queue.offer(node.right);
+                    nodes.add(sum + node.val);
                 }
             }
-        }
-        return false;
 
+        }
+
+        return false;
     }
     private boolean dfs(TreeNode root, int targetSum){
-        if (root == null) return false;
-        if (root.left == null && root.right == null) return targetSum == root.val;
+        if (root == null) return  false;
+        if (root.left == null && root.right == null) {
+            return root.val == targetSum;
+        }
+
         if (root.left != null) {
-            targetSum -= root.val;
+            targetSum-= root.val;
             if (dfs(root.left, targetSum)) return true;
             targetSum += root.val;
         }
 
         if (root.right != null) {
-            targetSum -=root.val;
+            targetSum-= root.val;
             if (dfs(root.right, targetSum)) return true;
             targetSum += root.val;
         }
+
         return false;
     }
 }

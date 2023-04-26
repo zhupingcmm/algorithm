@@ -1,20 +1,26 @@
 package com.mf.algorithm;
 
 public class GetMinimumDifference530 {
-    private long result = Integer.MAX_VALUE;
-
     TreeNode pre = null;
+    int minVal = Integer.MAX_VALUE;
+
     public int getMinimumDifference(TreeNode root) {
-        if (root == null) return 0;
+        dfs(root);
+        return minVal;
 
 
-        getMinimumDifference(root.left);
+    }
+
+    private void dfs(TreeNode root){
+        if (root == null) return;
+        dfs(root.left);
+
         if (pre != null) {
-            result = Math.min(result, root.val - pre.val);
+            minVal = Math.min(minVal, Math.abs(pre.val - root.val));
         }
         pre = root;
-        getMinimumDifference(root.right);
-
-        return (int) result;
+        dfs(root.right);
     }
+
+
 }
