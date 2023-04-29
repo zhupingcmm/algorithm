@@ -6,11 +6,11 @@ import java.util.Queue;
 public class SumOfLeftLeaves404 {
 
     public int sumOfLeftLeaves(TreeNode root) {
+
         if (root == null) return 0;
         int left = sumOfLeftLeaves(root.left);
         int right = sumOfLeftLeaves(root.right);
-        if (root.left != null && root.left.left == null && root.left.right == null) return root.left.val;
-
+        if (root.left != null && root.left.left == null && root.left.right == null) left = root.left.val;
         return left + right;
     }
 

@@ -1,20 +1,20 @@
 package com.mf.algorithm;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Subsets78 {
+public class SubsetsWithDup90 {
+
     public static void main(String[] args) {
-        int [] nums = new int[]{1,2,3};
-        Subsets78 subsets = new Subsets78();
-        System.out.println(subsets.subsets(nums));
+        SubsetsWithDup90 subsetsWithDup90 = new SubsetsWithDup90();
+        System.out.println(subsetsWithDup90.subsetsWithDup(new int[]{1,2,2}));;
     }
 
-    private List<List<Integer>> result = new ArrayList<>();
-    private List<Integer> paths = new ArrayList<>();
-
-    public List<List<Integer>> subsets(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> paths = new ArrayList<>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
         dfs(0, nums);
         return result;
     }
@@ -24,10 +24,12 @@ public class Subsets78 {
         if (startIndex >= nums.length) return;
 
         for (int i = startIndex; i < nums.length; i++) {
+            if (i> startIndex && nums[i] == nums[i-1]) continue;
             paths.add(nums[i]);
             dfs(i + 1, nums);
             paths.remove(paths.size() -1);
         }
     }
+
 
 }

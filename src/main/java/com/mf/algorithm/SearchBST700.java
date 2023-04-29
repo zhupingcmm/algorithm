@@ -6,20 +6,20 @@ import java.util.Queue;
 public class SearchBST700 {
 
     public TreeNode searchBST(TreeNode root, int val) {
+
         if (root == null) return null;
-        if (root.val == val) return root;
 
-        TreeNode node = null;
-        if (root.left != null && root.val > val) {
-            node = searchBST(root.left, val);
+        TreeNode node;
+        if (root.val > val) {
+          return searchBST(root.left, val);
         }
 
-        if (root.right != null && root.val < val) {
-            node = searchBST(root.right, val);
+        if (root.val < val) {
+            return searchBST(root.right,val);
         }
 
-        return node;
 
+        return root;
     }
 
 //    public TreeNode searchBST(TreeNode root, int val) {

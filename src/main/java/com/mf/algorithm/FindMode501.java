@@ -6,41 +6,44 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class FindMode501 {
-
-    private List<Integer> res = new ArrayList<>();
-    private int count = 0;
     private int maxCount = Integer.MIN_VALUE;
     TreeNode pre = null;
+    private int count = 0;
+    private List<Integer> result = new ArrayList<>();
     public int[] findMode(TreeNode root) {
-        dfs(root);
-        int [] result = new int[res.size()];
-        for (int i = 0; i < res.size(); i++) {
-            result[i] = res.get(i);
-        }
 
-        return result;
+        dfs(root);
+        int [] res = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            res[i] = result.get(i);
+        }
+        return res;
+
     }
 
     private void dfs(TreeNode root) {
         if (root == null) return;
 
         dfs(root.left);
-        if (pre != null && pre.val == root.val ) {
-            count ++;
+        if (pre != null && pre.val == root.val) {
+            count++;
         } else {
             count = 1;
         }
-        if (count > maxCount) {
+
+        if (count == maxCount) {
+            result.add(root.val);
+        } else if (count > maxCount) {
+            result.clear();
+            result.add(root.val);
             maxCount = count;
-            res.clear();
-            res.add(root.val);
-        } else if (count == maxCount) {
-            res.add(root.val);
         }
         pre = root;
-
         dfs(root.right);
     }
+
+
+
 
 
 

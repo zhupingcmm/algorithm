@@ -1,33 +1,33 @@
 package com.mf.algorithm;
 
+import com.sun.jmx.snmp.SnmpNull;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class InvertTree226 {
-    public static void main(String[] args) {
-        InvertTree226 invertTree226 = new InvertTree226();
-//        invertTree226.invertTree()
+
+
+    public TreeNode invertTree(TreeNode root) {
+        return dfs(root);
     }
 
-
-
-    public TreeNode invertTreeDfs(TreeNode root) {
+    private TreeNode dfs(TreeNode root) {
         if (root == null) return null;
+        dfs(root.left);
+        dfs(root.right);
         swap(root);
-        invertTreeDfs(root.left);
-        invertTreeDfs(root.right);
         return root;
+
     }
 
-    private void swap(TreeNode node) {
-        TreeNode temp = node.left;
-        node.left = node.right;
-        node.right = temp;
+    private void swap(TreeNode root) {
+        TreeNode tem = root.left;
+        root.left = root.right;
+        root.right = tem;
     }
 
-
-
-    public TreeNode invertTreeBfs(TreeNode root) {
+    private TreeNode bfs(TreeNode root) {
         if (root == null) return root;
         Queue<TreeNode> queue = new LinkedList<>();
 

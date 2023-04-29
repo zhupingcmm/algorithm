@@ -7,7 +7,6 @@ public class FindBottomLeftValue513 {
 
     private int maxDepth = Integer.MIN_VALUE;
     private int val;
-
     public int findBottomLeftValue(TreeNode root) {
 
       dfs(root, 0);
@@ -29,7 +28,7 @@ public class FindBottomLeftValue513 {
         }
 
         if (root.right != null) {
-            level++;
+            level ++;
             dfs(root.right, level);
             level--;
         }

@@ -5,27 +5,19 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class IsValidBST98 {
-
-    private TreeNode preNode = null;
-
-
     TreeNode pre = null;
     public boolean isValidBST(TreeNode root) {
-    return dfs(root);
+        return dfs(root);
     }
 
     private boolean dfs (TreeNode root) {
         if (root == null) return true;
+
         boolean left = dfs(root.left);
-        if (pre != null && pre.val >= root.val) {
-            return false;
-        }
+        if (pre != null && pre.val >= root.val) return false;
         pre = root;
-
-        boolean right = dfs(root.right);
-
+        boolean right = bfs(root.right);
         return left && right;
-
     }
 
     private boolean bfs(TreeNode root) {

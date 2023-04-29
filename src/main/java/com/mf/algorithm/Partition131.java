@@ -13,40 +13,39 @@ public class Partition131 {
 
     }
 
-    List<List<String>> lists = new ArrayList<>();
-    Deque<String> deque = new LinkedList<>();
+    private List<List<String>> result = new ArrayList<>();
+
+    private List<String> paths = new ArrayList<>();
 
     public List<List<String>> partition(String s) {
-        backTracking(s, 0);
-        return lists;
+        dfs(0, s);
+        return result;
+
+
     }
 
-    private void backTracking(String s, int startIndex) {
-        //如果起始位置大于s的大小，说明找到了一组分割方案
+    private void dfs (int startIndex, String s) {
         if (startIndex >= s.length()) {
-            lists.add(new ArrayList(deque));
-            return;
+            result.add(new ArrayList<>(paths));
         }
+
         for (int i = startIndex; i < s.length(); i++) {
-            //如果是回文子串，则记录
-            if (isPalindrome(s, startIndex, i)) {
-                String str = s.substring(startIndex, i + 1);
-                deque.addLast(str);
-            } else {
-                continue;
-            }
-            //起始位置后移，保证不重复
-            backTracking(s, i + 1);
-            deque.removeLast();
+            if (!isPartition(s, startIndex, i)) continue;
+            String str = s.substring(startIndex, i + 1);
+            paths.add(str);
+            dfs(i + 1, s);
+            paths.remove(paths.size() -1);
         }
     }
-    //判断是否是回文串
-    private boolean isPalindrome(String s, int startIndex, int end) {
-        for (int i = startIndex, j = end; i < j; i++, j--) {
-            if (s.charAt(i) != s.charAt(j)) {
+
+    private boolean isPartition(String s, int start, int end) {
+        while (start < end) {
+            if (s.charAt(start++) != s.charAt(end--)) {
                 return false;
             }
         }
         return true;
     }
+
+
 }
