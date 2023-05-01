@@ -7,12 +7,11 @@ public class Jump45 {
         int next = 0;
         int result = 0;
         for (int i = 0; i < nums.length; i++) {
-            next = Math.max(nums[i] + i, next);
+            next = Math.max(next, nums[i] + i);
             if (cur == i) {
                 if (cur >= nums.length -1) break;
-                result++;
                 cur = next;
-                if (cur >= nums.length -1) break;
+                result++;
             }
         }
         return result;
