@@ -9,9 +9,9 @@ public class MinDepth111 {
         if (root == null) return 0;
         int left = minDepth(root.left);
         int right = minDepth(root.right);
-        if (root.left == null && root.right != null) return right;
-        if (root.left != null && root.right == null) return left;
-        return Math.min(left, right);
+        if (root.left == null && root.right != null) return right + 1;
+        if (root.left != null && root.right == null) return left + 1;
+        return Math.min(left, right) + 1;
     }
 
 

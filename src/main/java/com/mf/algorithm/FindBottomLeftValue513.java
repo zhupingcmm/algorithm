@@ -6,34 +6,34 @@ import java.util.Queue;
 public class FindBottomLeftValue513 {
 
     private int maxDepth = Integer.MIN_VALUE;
+
+    private int level = 0;
     private int val;
     public int findBottomLeftValue(TreeNode root) {
-
-      dfs(root, 0);
-      return val;
+        dfs(root);
+        return val;
     }
 
-    private void dfs(TreeNode root, int level) {
+    private void dfs(TreeNode root) {
         if (root.left == null && root.right == null) {
             if (level > maxDepth) {
                 val = root.val;
-                maxDepth = level;
+                maxDepth =  level;
             }
         }
 
         if (root.left != null) {
             level++;
-            dfs(root.left, level);
+            dfs(root.left);
             level--;
         }
-
         if (root.right != null) {
-            level ++;
-            dfs(root.right, level);
+            level++;
+            dfs(root.right);
             level--;
         }
-
     }
+
 
 
 

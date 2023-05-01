@@ -8,8 +8,7 @@ public class MaxDepth104 {
 
 
     public int maxDeptDfs(TreeNode root) {
-
-        if (root == null) return 0;
+        if (root ==null) return 0;
         int left = maxDeptDfs(root.left);
         int right = maxDeptDfs(root.right);
         return Math.max(left, right) + 1;

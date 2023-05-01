@@ -5,37 +5,38 @@ import java.util.List;
 
 public class BinaryTreePaths257 {
 
+    private List<String> result = new ArrayList<>();
+    private List<Integer> paths = new ArrayList<>();
+
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> paths = new ArrayList<>();
-        List<Integer> nodes = new ArrayList<>();
-        dfs(root, paths, nodes);
-        return paths;
+        dfs(root);
+        return result;
     }
 
 
-    private void dfs(TreeNode root, List<String> paths, List<Integer> nodes) {
-        nodes.add(root.val);
+    private void dfs(TreeNode root) {
+        paths.add(root.val);
         if (root.left == null && root.right == null) {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < nodes.size(); i++) {
-                sb.append(nodes.get(i));
-                if (i != nodes.size() -1 ) {
+            for (int i = 0; i < paths.size(); i++) {
+                sb.append(paths.get(i));
+                if (paths.size() -1 != i) {
                     sb.append("->");
                 }
             }
-            paths.add(sb.toString());
-        }
 
+            result.add(sb.toString());
+            return;
+        }
         if (root.left != null) {
-            dfs(root.left, paths, nodes);
-            nodes.remove(nodes.size() -1);
+            dfs(root.left);
+            paths.remove(paths.size() -1);
         }
 
         if (root.right != null) {
-            dfs(root.right, paths, nodes);
-            nodes.remove(nodes.size() -1);
+            dfs(root.right);
+            paths.remove(paths.size() -1);
         }
-
     }
 
 

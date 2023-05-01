@@ -9,7 +9,7 @@ public class IsSymmetric101 {
 
 
     public boolean isSymmetric(TreeNode root) {
-       return isSymmetric(root.left, root.right);
+      return isSymmetric(root.left, root.right);
     }
 
     private boolean isSymmetric(TreeNode left, TreeNode right) {
@@ -22,6 +22,8 @@ public class IsSymmetric101 {
         boolean rightRes = isSymmetric(left.right, right.left);
         return leftRes && rightRes;
     }
+
+
 
 
 

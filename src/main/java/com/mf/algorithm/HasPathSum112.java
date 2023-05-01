@@ -41,21 +41,19 @@ public class HasPathSum112 {
         return false;
     }
     private boolean dfs(TreeNode root, int targetSum){
-        if (root == null) return  false;
-            if (root.left == null && root.right == null) {
-            return root.val == targetSum;
+        if (root.left == null && root.right == null) {
+            return targetSum == root.val;
         }
-
         if (root.left != null) {
-            targetSum-= root.val;
+            targetSum --;
             if (dfs(root.left, targetSum)) return true;
-            targetSum += root.val;
+            targetSum ++;
         }
 
         if (root.right != null) {
-            targetSum-= root.val;
+            targetSum --;
             if (dfs(root.right, targetSum)) return true;
-            targetSum += root.val;
+            targetSum ++;
         }
 
         return false;
