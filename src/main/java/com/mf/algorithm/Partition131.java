@@ -13,20 +13,20 @@ public class Partition131 {
 
     }
 
-    private List<List<String>> result = new ArrayList<>();
+    List<List<String>> result = new ArrayList<>();
 
-    private List<String> paths = new ArrayList<>();
+    List<String> paths = new ArrayList<>();
 
     public List<List<String>> partition(String s) {
         dfs(0, s);
         return result;
-
-
     }
 
-    private void dfs (int startIndex, String s) {
+    private void dfs(int startIndex, String s) {
+
         if (startIndex >= s.length()) {
             result.add(new ArrayList<>(paths));
+            return;
         }
 
         for (int i = startIndex; i < s.length(); i++) {
@@ -36,14 +36,14 @@ public class Partition131 {
             dfs(i + 1, s);
             paths.remove(paths.size() -1);
         }
+
     }
 
-    private boolean isPartition(String s, int start, int end) {
+    private boolean isPartition (String s, int start, int end) {
         while (start < end) {
-            if (s.charAt(start++) != s.charAt(end--)) {
-                return false;
-            }
+            if (s.charAt(start++) != s.charAt(end--)) return false;
         }
+
         return true;
     }
 

@@ -36,17 +36,19 @@ public class LetterCombinations17 {
         if (paths.size() == digits.length()) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < paths.size(); i++) {
-                sb.append(paths.get(i).toString());
+                sb.append(paths.get(i));
             }
             result.add(sb.toString());
             return;
         }
-        String strs  = map.get(digits.charAt(startIndex));
-        for (int i = 0; i < strs.length(); i++) {
-            paths.add(strs.charAt(i));
+
+        String str = map.get(digits.charAt(startIndex));
+        for (int i = 0; i < str.length(); i++) {
+            paths.add(str.charAt(i));
             dfs(startIndex + 1, digits);
             paths.remove(paths.size() -1);
         }
+
     }
 
 

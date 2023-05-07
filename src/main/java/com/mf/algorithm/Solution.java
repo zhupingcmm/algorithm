@@ -1,39 +1,39 @@
 package com.mf.algorithm;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Solution {
     public static void main(String[] args) {
-
         Solution solution = new Solution();
-        solution.solution(new int[]{10, 1, 3, 1, 2, 2, 1, 0, 4});
+        System.out.println(solution.solution("dog"));
 
     }
 
-    public int solution(int[] A) {
-        // write your code in Java SE 8
+    public int solution(String S) {
+        // Implement your solution here
+        int cur = 0;
+        int pre = 0;
+        int count = 0;
+        for (int i = 0; i < S.length(); i++) {
+            if (S.charAt(i) != 'a') {
+                cur = i;
+                int len = cur - pre;
+                if (len > 3) return -1;
+                if (len == 3) continue;
+                if (S.charAt(pre) != 'a' && len == 2) count++;
+                if (S.charAt(pre) != 'a' && len == 1) count +=2;
+                if (len == 0) count +=2;
 
-        int result = 0;
-        if (A.length <=1 ) return 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < A.length -1 ; i++) {
-          int j = i + 1;
-            int key =  A[i] + A[j];
-            if (map.containsKey(key)){
-                map.put(key, map.get(key) + 1);
-            } else {
-                map.put(key, 1);
+                pre = cur;
             }
         }
-        return map.values().stream().max((a,b) -> a.compareTo(b)).get();
-//        for (Integer key : map.keySet()) {
-//            if (maxValue == map.get(key)){
-//                result = key;
-//                break;
-//            }
-//        }
-//        return result;
+        if (pre == 0 && cur == 0 && count == 2) return -1;
+
+        if (S.length() >0 && S.charAt(S.length() -1) != 'a') count+=2;
+        if (S.length() >1 && S.charAt(S.length() - 1) == 'a' && S.charAt(S.length() -2) != 'a') count++;
+        return count;
     }
 }

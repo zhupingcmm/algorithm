@@ -11,16 +11,17 @@ public class FindContentChildren455 {
     public int findContentChildren(int[] g, int[] s) {
         Arrays.sort(g);
         Arrays.sort(s);
+
         int count = 0;
-        int index = s.length -1;
-        // 从大到小遍历 孩子的胃口
+
+        int len = s.length -1;
         for (int i = g.length -1; i >= 0; i--) {
-            // 尽量去满足胃口大的孩子
-            if (index >= 0 && s[index] >= g[i]) {
+            if (len >= 0 && s[len] >= g[i] ) {
+                len--;
                 count++;
-                index--;
             }
         }
+
         return count;
     }
 }
