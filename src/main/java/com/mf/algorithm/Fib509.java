@@ -7,6 +7,7 @@ public class Fib509 {
     }
     public int fib(int n) {
         if (n < 2) return n;
+        // dp[i] 表示 数字为 i 的fib
         int [] dp = new int[n + 1];
         dp[0] = 0;
         dp[1] = 1;
@@ -14,6 +15,8 @@ public class Fib509 {
         for (int i = 2; i <= n; i++) {
             dp[i] = dp[i-1] + dp[i-2];
         }
+
         return dp[n];
+
     }
 }
