@@ -9,12 +9,12 @@ public class Rob337 {
     private int[] dfs(TreeNode root) {
         if (root == null) return new int[2];
 
-        int [] left = dfs(root.left);
-        int [] right = dfs(root.right);
+       int [] left = dfs(root.left);
+       int [] right = dfs(root.right);
 
         int rob = left[0] + right[0] + root.val;
         int noRob = Math.max(left[1], left[0]) + Math.max(right[1], right[0]);
-        return new int[]{noRob, rob};
+        return new int[]{rob,noRob};
 
     }
 }

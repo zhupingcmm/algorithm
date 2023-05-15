@@ -7,11 +7,10 @@ public class Fib509 {
     }
     public int fib(int n) {
         if (n < 2) return n;
-        // dp[i] 表示 数字为 i 的fib
+        // dp[i] 表示 第 i 为的 斐波那契数列 值
         int [] dp = new int[n + 1];
         dp[0] = 0;
         dp[1] = 1;
-
         for (int i = 2; i <= n; i++) {
             dp[i] = dp[i-1] + dp[i-2];
         }

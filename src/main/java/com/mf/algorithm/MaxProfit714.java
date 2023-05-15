@@ -7,7 +7,7 @@ public class MaxProfit714 {
     }
     public int maxProfit(int[] prices, int fee) {
         int m = prices.length;
-        int[][] dp = new int[m][2];
+        int [][] dp = new int[m][2];
         dp[0][0] = -prices[0];
         dp[0][1] = 0;
         for (int i = 1; i < m; i++) {
