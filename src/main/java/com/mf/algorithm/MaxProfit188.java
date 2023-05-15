@@ -7,26 +7,23 @@ public class MaxProfit188 {
     }
     public int maxProfit(int k, int[] prices) {
         int m = prices.length;
-        int n = 2*k + 1;
+        int n = 2 * k + 1;
         int [][] dp = new int[m][n];
 
-        //
-        dp[0][0] = 0;
-
         for (int i = 0; i < n; i++) {
-            if ( i % 2 != 0) {
-                dp[0][i] = -prices[0];
+            if (i % 2 != 0) {
+                dp[0][i] = - prices[0];
             }
         }
 
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                if (j % 2 != 0) dp[i][j] = Math.max(dp[i-1][j],dp[i-1][j-1] - prices[i]);
-                if (j % 2 ==0)  dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-1] + prices[i]);
+                if (j % 2 == 0) dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-1] + prices[i]);
+                if (j %2 != 0) dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-1] -prices[i]);
             }
         }
 
-        return dp[m-1][n-1];
+        return dp[m-1][2*k];
 
     }
 }
