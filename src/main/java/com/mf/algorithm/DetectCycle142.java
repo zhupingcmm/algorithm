@@ -14,7 +14,6 @@ public class DetectCycle142 {
         detectCycle142.detectCycle(node);
     }
     public ListNode detectCycle(ListNode head) {
-
         ListNode fast = head;
         ListNode slow = head;
         ListNode index1 = head;
@@ -23,13 +22,12 @@ public class DetectCycle142 {
             fast = fast.next.next;
             slow = slow.next;
             if (fast == slow) {
-                ListNode index2 = fast;
-                while (index2 != index1) {
-                    index2 = index2.next;
-                    index1 = index1.next;
-                }
-
-                return index1;
+               ListNode index2 = fast;
+               while (index1 != index2) {
+                   index1 = index1.next;
+                   index2 = index2.next;
+               }
+               return index1;
             }
         }
 

@@ -8,16 +8,16 @@ public class RemoveElements203 {
     public ListNode removeElements(ListNode head, int val) {
         ListNode dummyNode = new ListNode(-1, head);
         ListNode pre = dummyNode;
-        ListNode cur = head;
-
+        ListNode cur = dummyNode.next;
         while (cur != null) {
             if (cur.val == val) {
                 pre.next = cur.next;
             } else {
                 pre = cur;
             }
-
             cur = cur.next;
+
+
         }
         return dummyNode.next;
     }

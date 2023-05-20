@@ -10,30 +10,27 @@ public class FourSumCount454 {
 
     }
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
+        int result = 0;
         HashMap<Integer, Integer> map = new HashMap<>();
-        int count = 0;
-
         for (int i = 0; i < nums1.length; i++) {
             for (int j = 0; j < nums2.length; j++) {
-                Integer key = nums1[i] + nums2[j];
+                int key = nums1[i] + nums2[j];
                 if (map.containsKey(key)) {
-                    Integer val = map.get(key);
-                    map.put(key, val + 1);
+                    map.put(key, map.get(key) +1);
                 } else {
                     map.put(key, 1);
                 }
             }
         }
-
         for (int i = 0; i < nums3.length; i++) {
             for (int j = 0; j < nums4.length; j++) {
-                Integer key = nums3[i] + nums4[j];
+                int key = nums3[i] + nums4[j];
                 if (map.containsKey(-key)) {
-                    count = count + map.get(-key);
+
+                    result+= map.get(-key);
                 }
             }
         }
-
-        return count;
+        return result;
     }
 }
